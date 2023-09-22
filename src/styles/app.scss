@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+// Variables
+$sans-serif: "Poppins", sans-serif;
+$serif: "Lora", serif;
+
+// Color
+$primary: #052a5a;
+$secondary: #eeb519;
+$dark: #01132b;
+$dark-alt: #03234e;
+$light: #ffffff;
+$light-alt: #ecf0f5;
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-color: $primary transparent;
+  scrollbar-width: thin;
+}
+
+*::selection {
+  background: $primary;
+  color: $light;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background: $dark;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $sans-serif;
+  background: $dark;
+  overflow-x: hidden;
+  position: relative;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  a,
+  p,
+  b,
+  i,
+  u,
+  ul,
+  ol,
+  li,
+  span {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    line-height: 100%;
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 300;
+    color: $light-alt;
+    line-height: 140%;
+    letter-spacing: 0.4px;
+
+    a {
+      color: $light-alt;
+      transition: 0.4s all ease;
+
+      &:hover {
+        color: $primary;
+        text-decoration: none;
+      }
+    }
+  }
+
+  img,
+  video {
+    width: 100%;
+  }
+}
+
+// Imports
+@import "./song";
+@import "./player";
