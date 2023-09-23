@@ -1,0 +1,54 @@
+.library {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 350px;
+  background: $dark-alt;
+  height: 100vh;
+  padding: 50px 0;
+  overflow-y: auto;
+
+  h2 {
+    color: $light;
+    font-size: 30px;
+    font-weight: 500;
+    font-family: $serif;
+    padding: 10px 30px;
+    margin-bottom: 15px;
+  }
+
+  .library-song {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 15px 30px;
+
+    &:hover {
+      background: #03316dd3;
+    }
+
+    &.selected {
+      background: $primary;
+    }
+
+    img {
+      width: 80px;
+      margin-right: 20px;
+    }
+
+    .text {
+      h3 {
+        font-size: 18px;
+        font-weight: 500;
+        color: $light;
+        margin-bottom: 15px;
+      }
+
+      h5 {
+        font-size: 15px;
+        color: $light-alt;
+        font-weight: 500;
+      }
+    }
+  }
+}

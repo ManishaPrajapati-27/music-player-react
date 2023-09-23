@@ -1,9 +1,14 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { FaAngleLeft, FaAngleRight, FaPlay, FaPause } from "react-icons/fa";
-const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
-  // Ref
-  const audioRef = useRef(null);
 
+const Player = ({
+  isPlaying,
+  setIsPlaying,
+  audioRef,
+  getTime,
+  songInfo,
+  setSongInfo,
+}) => {
   // Event
   const playSongHandler = () => {
     // console.log(audioRef.current);
@@ -19,28 +24,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
       setIsPlaying(!isPlaying); // Is Play in state
     }
   };
-
-  // Time Update Function
-  const timeUpdateHandler = (e) => {
-    const current = e.target.currentTime;
-    const duration = e.target.duration;
-    // console.log(duration);
-    setSongInfo({ ...songInfo, currentTime: current, duration });
-    // console.log(e.target);
-  };
-
-  // Time display in nice way(Formates Time Number)
-  const getTime = (time) => {
-    return (
-      Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
-    );
-  };
-
-  // State
-  const [songInfo, setSongInfo] = useState({
-    currentTime: null,
-    duration: null,
-  });
 
   // Drag Handler for Range
   const dragHandler = (e) => {
@@ -67,29 +50,11 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
       <div className="play-control">
         {/* <FontAwesomeIcon className="skip-back" size="2x" icon={faAngleLeft} /> */}
         <FaAngleLeft className="skip-back" />
-
-        {/* <FontAwesomeIcon
-          onClick={playSongHandler}
-          className="play"
-          size="2x"
-          icon={FaPlay}
-        /> */}
         <div onClick={playSongHandler} className="play">
           {isPlaying ? <FaPause /> : <FaPlay />}
         </div>
-        {/* <FontAwesomeIcon
-          className="skip-forward"
-          size="2x"
-          icon={faAngleRight}
-        /> */}
         <FaAngleRight className="skip-forward" />
       </div>
-      <audio
-        onTimeUpdate={timeUpdateHandler}
-        onLoadedMetadata={timeUpdateHandler}
-        ref={audioRef}
-        src={currentSong.audio}
-      ></audio>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 // import "./App.css";
@@ -40,14 +40,38 @@ import "./styles/app.scss";
 // Adding Components
 import Player from "./components/Player";
 import Song from "./components/Song";
-
+import Library from "./components/Library";
 // Import Data
 import data from "./AppData";
 
 function App() {
+  // State
   const [songs, setSongs] = useState(data());
   const [currentSong, setCurrentSong] = useState(songs[0]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [songInfo, setSongInfo] = useState({
+    currentTime: 0,
+    duration: 0,
+  });
+
+  // Ref
+  const audioRef = useRef(null);
+
+  // Time Update Function
+  const timeUpdateHandler = (e) => {
+    const current = e.target.currentTime;
+    const duration = e.target.duration;
+    // console.log(duration);
+    setSongInfo({ ...songInfo, currentTime: current, duration });
+    // console.log(e.target);
+  };
+
+  // Time display in nice way(Formates Time Number)
+  const getTime = (time) => {
+    return (
+      Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
+    );
+  };
 
   return (
     <div className="App">
@@ -56,7 +80,24 @@ function App() {
         setIsPlaying={setIsPlaying}
         isPlaying={isPlaying}
         currentSong={currentSong}
+        audioRef={audioRef}
+        getTime={getTime}
+        songInfo={songInfo}
+        setSongInfo={setSongInfo}
       />
+      <Library
+        songs={songs}
+        setCurrentSong={setCurrentSong}
+        audioRef={audioRef}
+        isPlaying={isPlaying}
+        setSongs={setSongs}
+      />
+      <audio
+        onTimeUpdate={timeUpdateHandler}
+        onLoadedMetadata={timeUpdateHandler}
+        ref={audioRef}
+        src={currentSong.audio}
+      ></audio>
     </div>
   );
 }

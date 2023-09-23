@@ -29,6 +29,42 @@ const AppData = () => {
       color: ["#4b4e83", "#5482c0"],
       audio: "https://stream.chillhop.com/mp3/45146",
     },
+    {
+      name: "Come In And Stay",
+      artist: "Dotlights",
+      cover: "https://i.scdn.co/image/ab67616d0000b273f73cc2e03a580f5440dbc18a",
+      id: uuidv4(),
+      active: false,
+      color: ["#4b4e83", "#5482c0"],
+      audio: "https://stream.chillhop.com/mp3/45146",
+    },
+    {
+      name: "Come In And Stay",
+      artist: "Dotlights",
+      cover: "https://i.scdn.co/image/ab67616d0000b273f73cc2e03a580f5440dbc18a",
+      id: uuidv4(),
+      active: false,
+      color: ["#4b4e83", "#5482c0"],
+      audio: "https://stream.chillhop.com/mp3/45146",
+    },
+    {
+      name: "Come In And Stay",
+      artist: "Dotlights",
+      cover: "https://i.scdn.co/image/ab67616d0000b273f73cc2e03a580f5440dbc18a",
+      id: uuidv4(),
+      active: false,
+      color: ["#4b4e83", "#5482c0"],
+      audio: "https://stream.chillhop.com/mp3/45146",
+    },
+    {
+      name: "Come In And Stay",
+      artist: "Dotlights",
+      cover: "https://i.scdn.co/image/ab67616d0000b273f73cc2e03a580f5440dbc18a",
+      id: uuidv4(),
+      active: false,
+      color: ["#4b4e83", "#5482c0"],
+      audio: "https://stream.chillhop.com/mp3/45146",
+    },
   ];
 };
 

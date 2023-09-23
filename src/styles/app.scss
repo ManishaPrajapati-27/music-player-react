@@ -5,7 +5,7 @@ $sans-serif: "Poppins", sans-serif;
 $serif: "Lora", serif;
 
 // Color
-$primary: #052a5a;
+$primary: #1050a5;
 $secondary: #eeb519;
 $dark: #01132b;
 $dark-alt: #03234e;
@@ -98,3 +98,4 @@ body {
 // Imports
 @import "./song";
 @import "./player";
+@import "./library";
