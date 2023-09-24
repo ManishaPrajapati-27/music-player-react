@@ -3,11 +3,11 @@ import React from "react";
 const LibrarySong = ({
   song,
   songs,
-  setSongs,
+  id,
   setCurrentSong,
   isPlaying,
   audioRef,
-  id,
+  setSongs,
 }) => {
   const songSelectHandler = () => {
     const selectedSong = songs.filter((state) => state.id === id);
@@ -28,7 +28,6 @@ const LibrarySong = ({
       };
     }
   });
-
   // setSongs(newSongs);
 
   // Check if the song is playing
@@ -44,7 +43,7 @@ const LibrarySong = ({
   return (
     <div
       onClick={songSelectHandler}
-      className={`library-song ${song.active ? "selected" : ""}`}
+      className={`library-song ${song.active ? "active" : ""}`}
     >
       <div className="image">
         <img src={song.cover} alt={song.name} />

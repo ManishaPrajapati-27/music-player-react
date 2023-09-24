@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaAngleLeft, FaAngleRight, FaPlay, FaPause } from "react-icons/fa";
 
 const Player = ({
   isPlaying,
   setIsPlaying,
   audioRef,
-  getTime,
   songInfo,
   setSongInfo,
+  songs,
+  setCurrentSong,
+  currentSong,
 }) => {
   // Event
   const playSongHandler = () => {
@@ -25,6 +27,13 @@ const Player = ({
     }
   };
 
+  // Time display in nice way(Formates Time Number)
+  const getTime = (time) => {
+    return (
+      Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
+    );
+  };
+
   // Drag Handler for Range
   const dragHandler = (e) => {
     // console.log(e);
@@ -34,13 +43,21 @@ const Player = ({
     setSongInfo({ ...songInfo, currentTime: e.target.value }); // For drag range as per time
   };
 
+  const skipTrackHandler = (direction) => {
+    let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    if (direction === "skip-forward") {
+      setCurrentSong(songs[currentIndex + 1]);
+    }
+    console.log(currentIndex + 1);
+  };
+
   return (
     <div className="player">
       <div className="time-control">
         <p>{getTime(songInfo.currentTime)}</p>
         <input
           min={0}
-          max={songInfo.duration}
+          max={songInfo.duration || 0}
           value={songInfo.currentTime}
           onChange={dragHandler}
           type="range"
@@ -49,11 +66,21 @@ const Player = ({
       </div>
       <div className="play-control">
         {/* <FontAwesomeIcon className="skip-back" size="2x" icon={faAngleLeft} /> */}
-        <FaAngleLeft className="skip-back" />
+        <div
+          onClick={() => skipTrackHandler("skip-back")}
+          className="skip-back"
+        >
+          <FaAngleLeft />
+        </div>
         <div onClick={playSongHandler} className="play">
           {isPlaying ? <FaPause /> : <FaPlay />}
         </div>
-        <FaAngleRight className="skip-forward" />
+        <div
+          onClick={() => skipTrackHandler("skip-farward")}
+          className="skip-forward"
+        >
+          <FaAngleRight />
+        </div>
       </div>
     </div>
   );

@@ -1,12 +1,19 @@
 .library {
   position: fixed;
   top: 0;
-  left: 0;
+  left: -400px;
   width: 350px;
   background: $dark-alt;
   height: 100vh;
   padding: 50px 0;
   overflow-y: auto;
+  opacity: 0;
+  transition: 0.5s all ease;
+
+  &.active-library {
+    left: 0;
+    opacity: 1;
+  }
 
   h2 {
     color: $light;
@@ -27,7 +34,7 @@
       background: #03316dd3;
     }
 
-    &.selected {
+    &.active {
       background: $primary;
     }
 

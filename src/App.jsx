@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+// import reactLogo from "./assets/react.svg";
+// import viteLogo from "/vite.svg";
 // import "./App.css";
 
 // function App() {
@@ -36,26 +36,27 @@ import viteLogo from "/vite.svg";
 
 // import React, { useState } from "react";
 // Import Styles
-import "./styles/app.scss";
+import "./assets/styles/app.scss";
 // Adding Components
 import Player from "./components/Player";
 import Song from "./components/Song";
 import Library from "./components/Library";
+import Navbar from "./components/Navbar";
 // Import Data
 import data from "./AppData";
 
 function App() {
+  // Ref
+  const audioRef = useRef(null);
   // State
   const [songs, setSongs] = useState(data());
   const [currentSong, setCurrentSong] = useState(songs[0]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [libraryStatus, setLibraryStatus] = useState(false);
   const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
   });
-
-  // Ref
-  const audioRef = useRef(null);
 
   // Time Update Function
   const timeUpdateHandler = (e) => {
@@ -66,31 +67,30 @@ function App() {
     // console.log(e.target);
   };
 
-  // Time display in nice way(Formates Time Number)
-  const getTime = (time) => {
-    return (
-      Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
-    );
-  };
-
   return (
     <div className="App">
+      <Navbar
+        libraryStatus={libraryStatus}
+        setLibraryStatus={setLibraryStatus}
+      />
       <Song currentSong={currentSong} />
       <Player
         setIsPlaying={setIsPlaying}
         isPlaying={isPlaying}
         currentSong={currentSong}
         audioRef={audioRef}
-        getTime={getTime}
         songInfo={songInfo}
         setSongInfo={setSongInfo}
-      />
-      <Library
         songs={songs}
         setCurrentSong={setCurrentSong}
+      />
+      <Library
         audioRef={audioRef}
+        songs={songs}
+        setCurrentSong={setCurrentSong}
         isPlaying={isPlaying}
         setSongs={setSongs}
+        libraryStatus={libraryStatus}
       />
       <audio
         onTimeUpdate={timeUpdateHandler}

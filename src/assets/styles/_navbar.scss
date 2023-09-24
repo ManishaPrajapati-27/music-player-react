@@ -1,0 +1,31 @@
+.navbar {
+  min-height: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  h1 {
+    font-size: 35px;
+    color: $light;
+    font-family: $serif;
+
+    span {
+      color: $secondary;
+    }
+  }
+
+  .library-button {
+    background: transparent;
+    border: 2px solid $primary;
+    padding: 10px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    color: $light;
+    transition: 0.5s all ease;
+
+    &:hover {
+      background: $secondary;
+      border: 2px solid $secondary;
+    }
+  }
+}
