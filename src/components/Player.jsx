@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { FaAngleLeft, FaAngleRight, FaPlay, FaPause } from "react-icons/fa";
+import { playAudio } from "../util";
 
 const Player = ({
   isPlaying,
@@ -10,25 +11,26 @@ const Player = ({
   songs,
   setCurrentSong,
   currentSong,
+  setSongs,
 }) => {
-  // useEffect
-  // useEffect(() => {
-  //   // Active Selected Song
-  //   const newSongs = songs.map((song) => {
-  //     if (song.id === currentSong.id) {
-  //       return {
-  //         ...song,
-  //         active: true,
-  //       };
-  //     } else {
-  //       return {
-  //         ...song,
-  //         active: false,
-  //       };
-  //     }
-  //   });
-  //   // setSongs(newSongs);
-  // }, [currentSong]);
+  //   useEffect
+  useEffect(() => {
+    // Active Selected Song
+    const newSongs = songs.map((song) => {
+      if (song.id === currentSong.id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return {
+          ...song,
+          active: false,
+        };
+      }
+    });
+    setSongs(newSongs);
+  }, [currentSong]);
   // Event
   const playSongHandler = () => {
     // console.log(audioRef.current);
@@ -71,14 +73,15 @@ const Player = ({
     if (direction === "skip-back") {
       if ((currentIndex - 1) % songs.length === -1) {
         setCurrentSong(songs[songs.length - 1]);
+        playAudio(isPlaying, audioRef);
         return;
       }
-      setCurrentSong(songs[(currentIndex - 1) % songs.length]);
       setCurrentSong(songs[(currentIndex - 1) % songs.length]);
       // console.log(`next index is ${currentIndex + 1}`);
       // console.log(`songs length is ${songs.length}`);
     }
-    console.log(currentIndex + 1);
+    playAudio(isPlaying, audioRef);
+    // console.log(currentIndex + 1);
   };
 
   return (
@@ -92,7 +95,7 @@ const Player = ({
           onChange={dragHandler}
           type="range"
         />
-        <p>{getTime(songInfo.duration)}</p>
+        <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
       </div>
       <div className="play-control">
         {/* <FontAwesomeIcon className="skip-back" size="2x" icon={faAngleLeft} /> */}
