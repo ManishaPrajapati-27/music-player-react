@@ -8,10 +8,44 @@
   .time-control {
     width: 50%;
     display: flex;
+    align-items: center;
 
-    input {
+    .track {
       width: 100%;
-      padding: 16px 0;
+      height: 7px;
+      background: $secondary;
+      position: relative;
+      overflow: hidden;
+
+      input {
+        width: 100%;
+        -webkit-appearance: none;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      input[type="range"]:focus {
+        outline: none;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 15px;
+        height: 15px;
+        // background: $dark-alt;
+      }
+
+      .animate-track {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        // z-index: 2;
+        background: $light-alt;
+        transform: translateX(0%);
+        pointer-events: none;
+      }
     }
 
     p {

@@ -17,23 +17,23 @@ const LibrarySong = ({
   };
 
   // Active Selected Song
-  const newSongs = songs.map((song) => {
-    if (song.id === id) {
-      return {
-        ...song,
-        active: true,
-      };
-    } else {
-      return {
-        ...song,
-        active: false,
-      };
-    }
-  });
+  // useEffect(() => {
+  //   const newSongs = songs.map((song) => {
+  //     if (song.id === id) {
+  //       return {
+  //         ...song,
+  //         active: true,
+  //       };
+  //     } else {
+  //       return {
+  //         ...song,
+  //         active: false,
+  //       };
+  //     }
+  //   });
 
-  useEffect(() => {
-    setSongs(newSongs);
-  }, []);
+  //   // setSongs(newSongs);
+  // }, []);
 
   //   Check song is playing
   playAudio(isPlaying, audioRef);
