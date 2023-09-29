@@ -92,20 +92,6 @@ const Player = ({
 
   return (
     <div className="player">
-      <div className="time-control">
-        <p>{getTime(songInfo.currentTime)}</p>
-        <div className="track">
-          <input
-            min={0}
-            max={songInfo.duration || 0}
-            value={songInfo.currentTime}
-            onChange={dragHandler}
-            type="range"
-          />
-          <div style={trackAnim} className="animate-track"></div>
-        </div>
-        <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
-      </div>
       <div className="play-control">
         {/* <FontAwesomeIcon className="skip-back" size="2x" icon={faAngleLeft} /> */}
         <div
@@ -123,6 +109,20 @@ const Player = ({
         >
           <FiSkipForward />
         </div>
+      </div>
+      <div className="time-control">
+        <p>{getTime(songInfo.currentTime)}</p>
+        <div className="track">
+          <input
+            min={0}
+            max={songInfo.duration || 0}
+            value={songInfo.currentTime}
+            onChange={dragHandler}
+            type="range"
+          />
+          <div style={trackAnim} className="animate-track"></div>
+        </div>
+        <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 .navbar {
-  min-height: 80px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,6 +23,10 @@
     span {
       color: $secondary;
     }
+
+    @media (max-width: 600px) {
+      font-size: 27px;
+    }
   }
 
   .library-button {
@@ -41,7 +45,7 @@
       border: 2px solid $secondary;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 992px) {
       position: relative;
       z-index: 10;
     }
