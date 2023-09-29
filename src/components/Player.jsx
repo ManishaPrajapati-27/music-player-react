@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { FaAngleLeft, FaAngleRight, FaPlay, FaPause } from "react-icons/fa";
-import { playAudio } from "../util";
+import { FaPlay, FaPause } from "react-icons/fa";
+import { FiSkipBack, FiSkipForward } from "react-icons/fi";
 
 const Player = ({
   isPlaying,
@@ -63,24 +63,25 @@ const Player = ({
     setSongInfo({ ...songInfo, currentTime: e.target.value }); // For drag range as per time
   };
 
-  const skipTrackHandler = (direction) => {
+  const skipTrackHandler = async (direction) => {
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     if (direction === "skip-forward") {
-      setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+      await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
       // console.log(`next index is ${currentIndex + 1}`);
       // console.log(`songs length is ${songs.length}`);
     }
     if (direction === "skip-back") {
       if ((currentIndex - 1) % songs.length === -1) {
-        setCurrentSong(songs[songs.length - 1]);
-        playAudio(isPlaying, audioRef);
+        await setCurrentSong(songs[songs.length - 1]);
+        if (isPlaying) audioRef.current.play();
         return;
       }
-      setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+      await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
       // console.log(`next index is ${currentIndex + 1}`);
       // console.log(`songs length is ${songs.length}`);
     }
-    playAudio(isPlaying, audioRef);
+    if (isPlaying) audioRef.current.play();
+    // playAudio(isPlaying, audioRef);
     // console.log(currentIndex + 1);
   };
 
@@ -109,18 +110,18 @@ const Player = ({
         {/* <FontAwesomeIcon className="skip-back" size="2x" icon={faAngleLeft} /> */}
         <div
           onClick={() => skipTrackHandler("skip-back")}
-          className="skip-back"
+          className="skip-back play-icons icon"
         >
-          <FaAngleLeft />
+          <FiSkipBack />
         </div>
-        <div onClick={playSongHandler} className="play">
+        <div onClick={playSongHandler} className="play play-icons">
           {isPlaying ? <FaPause /> : <FaPlay />}
         </div>
         <div
           onClick={() => skipTrackHandler("skip-forward")}
-          className="skip-forward"
+          className="skip-forward play-icons icon"
         >
-          <FaAngleRight />
+          <FiSkipForward />
         </div>
       </div>
     </div>

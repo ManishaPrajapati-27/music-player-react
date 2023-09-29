@@ -1,5 +1,6 @@
 import React from "react";
-import { FiMusic } from "react-icons/fi";
+// import { FiMusic } from "react-icons/fi";
+import { FaMusic } from "react-icons/fa";
 
 const Navbar = ({ libraryStatus, setLibraryStatus }) => {
   const libraryToggleHandler = () => {
@@ -12,7 +13,7 @@ const Navbar = ({ libraryStatus, setLibraryStatus }) => {
         Music<span>Waves</span>
       </h1>
       <button onClick={libraryToggleHandler} className="library-button">
-        Library <FiMusic />
+        Library <FaMusic />
       </button>
     </div>
   );

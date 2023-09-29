@@ -8,8 +8,9 @@ import Library from "./components/Library";
 import Navbar from "./components/Navbar";
 // Import Data
 import data from "./data";
+import LibrarySong from "./components/LibrarySong";
 
-function App() {
+const App = () => {
   // Ref
   const audioRef = useRef(null);
   // State
@@ -46,40 +47,50 @@ function App() {
     // console.log(e.target);
   };
 
+  // Auto Skip
+  const songEndHandler = async () => {
+    let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+    if (isPlaying) audioRef.current.play();
+  };
+
   return (
-    <div className="App">
-      <Navbar
-        libraryStatus={libraryStatus}
-        setLibraryStatus={setLibraryStatus}
-      />
-      <Song currentSong={currentSong} />
-      <Player
-        setIsPlaying={setIsPlaying}
-        isPlaying={isPlaying}
-        currentSong={currentSong}
-        audioRef={audioRef}
-        songInfo={songInfo}
-        setSongInfo={setSongInfo}
-        songs={songs}
-        setCurrentSong={setCurrentSong}
-        setSongs={setSongs}
-      />
-      <Library
-        audioRef={audioRef}
-        songs={songs}
-        setCurrentSong={setCurrentSong}
-        isPlaying={isPlaying}
-        setSongs={setSongs}
-        libraryStatus={libraryStatus}
-      />
-      <audio
-        onTimeUpdate={timeUpdateHandler}
-        onLoadedMetadata={timeUpdateHandler}
-        ref={audioRef}
-        src={currentSong.audio}
-      ></audio>
-    </div>
+    <main>
+      <div className={`app ${libraryStatus ? "active-library" : ""}`}>
+        <Navbar
+          libraryStatus={libraryStatus}
+          setLibraryStatus={setLibraryStatus}
+        />
+        <Song currentSong={currentSong} />
+        <Player
+          setIsPlaying={setIsPlaying}
+          isPlaying={isPlaying}
+          currentSong={currentSong}
+          audioRef={audioRef}
+          songInfo={songInfo}
+          setSongInfo={setSongInfo}
+          songs={songs}
+          setCurrentSong={setCurrentSong}
+          setSongs={setSongs}
+        />
+        <Library
+          audioRef={audioRef}
+          songs={songs}
+          setCurrentSong={setCurrentSong}
+          isPlaying={isPlaying}
+          setSongs={setSongs}
+          libraryStatus={libraryStatus}
+        />
+        <audio
+          onTimeUpdate={timeUpdateHandler}
+          onLoadedMetadata={timeUpdateHandler}
+          ref={audioRef}
+          src={currentSong.audio}
+          onEnded={songEndHandler}
+        ></audio>
+      </div>
+    </main>
   );
-}
+};
 
 export default App;

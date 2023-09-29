@@ -3,23 +3,24 @@ import { v4 as uuidv4 } from "uuid";
 const AppData = () => {
   return [
     {
-      name: "Changing Winds",
-      artist: "Knowmadic",
-      cover: "https://i.scdn.co/image/ab67616d0000b273fca90fd7b378efe6b6598e8a",
-      id: uuidv4(),
-      active: true,
-      color: ["#d45d6f", "#f6bf7a"],
-      audio: "https://stream.chillhop.com/mp3/41654",
-    },
-    {
       name: "Tomorrow",
       artist: "Hanz",
       cover: "https://i.scdn.co/image/ab67616d0000b27360eec311f87fb74e744c3818",
       id: uuidv4(),
-      active: false,
+      active: true,
       color: ["#4b4e83", "#5482c0"],
       audio: "https://stream.chillhop.com/mp3/62171",
     },
+    {
+      name: "Changing Winds",
+      artist: "Knowmadic",
+      cover: "https://i.scdn.co/image/ab67616d0000b273fca90fd7b378efe6b6598e8a",
+      id: uuidv4(),
+      active: false,
+      color: ["#d45d6f", "#f6bf7a"],
+      audio: "https://stream.chillhop.com/mp3/41654",
+    },
+
     {
       name: "It'll Always be Alright",
       artist: "Masked Man",

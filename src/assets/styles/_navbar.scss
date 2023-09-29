@@ -1,11 +1,22 @@
 .navbar {
   min-height: 80px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 100px;
+
+  @media (max-width: 992px) {
+    padding: 0 50px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0 20px;
+  }
 
   h1 {
-    font-size: 35px;
+    font-size: 37px;
+    letter-spacing: 1px;
+    font-weight: bold;
     color: $light;
     font-family: $serif;
 
@@ -16,16 +27,23 @@
 
   .library-button {
     background: transparent;
-    border: 2px solid $primary;
+    border: 2px solid $light;
     padding: 10px 25px;
     font-size: 16px;
     cursor: pointer;
     color: $light;
+    display: flex;
+    gap: 5px;
     transition: 0.5s all ease;
 
     &:hover {
       background: $secondary;
       border: 2px solid $secondary;
+    }
+
+    @media (max-width: 600px) {
+      position: relative;
+      z-index: 10;
     }
   }
 }

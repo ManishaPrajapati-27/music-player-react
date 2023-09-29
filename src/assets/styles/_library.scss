@@ -1,27 +1,46 @@
 .library {
   position: fixed;
   top: 0;
-  left: -400px;
+  left: 0;
+  transform: translateX(-100%);
   width: 350px;
   background: $dark-alt;
   height: 100vh;
   padding: 50px 0;
+  padding-top: 0;
   overflow-y: auto;
   opacity: 0;
   transition: 0.5s all ease;
 
   &.active-library {
-    left: 0;
+    transform: translateX(0%);
     opacity: 1;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
   }
 
   h2 {
     color: $light;
     font-size: 30px;
-    font-weight: 500;
+    font-weight: bold;
     font-family: $serif;
     padding: 10px 30px;
     margin-bottom: 15px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    background: #011631d3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .songs {
+    margin-top: 100px;
+    overflow-y: auto;
   }
 
   .library-song {
@@ -47,14 +66,15 @@
       h3 {
         font-size: 18px;
         font-weight: 500;
+        line-height: 120%;
         color: $light;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
       }
 
       h5 {
         font-size: 15px;
         color: $light-alt;
-        font-weight: 500;
+        font-weight: 400;
       }
     }
   }

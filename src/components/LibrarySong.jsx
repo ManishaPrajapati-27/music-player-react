@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { playAudio } from "./../util";
+// import { playAudio } from "./../util";
 
 const LibrarySong = ({
   song,
@@ -11,32 +11,29 @@ const LibrarySong = ({
   audioRef,
   setSongs,
 }) => {
-  const songSelectHandler = () => {
+  const songSelectHandler = async () => {
     const selectedSong = songs.filter((state) => state.id === id);
-    setCurrentSong(selectedSong[0]);
+    await setCurrentSong(selectedSong[0]);
+
+    // Active Selected Song
+    const newSongs = songs.map((song) => {
+      if (song.id === id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return {
+          ...song,
+          active: false,
+        };
+      }
+    });
+
+    setSongs(newSongs);
+    //   Check song is playing
+    if (isPlaying) audioRef.current.play();
   };
-
-  // Active Selected Song
-  // useEffect(() => {
-  //   const newSongs = songs.map((song) => {
-  //     if (song.id === id) {
-  //       return {
-  //         ...song,
-  //         active: true,
-  //       };
-  //     } else {
-  //       return {
-  //         ...song,
-  //         active: false,
-  //       };
-  //     }
-  //   });
-
-  //   // setSongs(newSongs);
-  // }, []);
-
-  //   Check song is playing
-  playAudio(isPlaying, audioRef);
 
   return (
     <div
