@@ -46,6 +46,13 @@
         // background: $dark-alt;
       }
 
+      input[type="range"]::-moz-range-thumb {
+        -webkit-appearance: none;
+        width: 15px;
+        height: 15px;
+        // background: $dark-alt;
+      }
+
       .animate-track {
         position: absolute;
         top: 0;

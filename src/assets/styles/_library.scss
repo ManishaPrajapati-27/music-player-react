@@ -5,11 +5,11 @@
   transform: translateX(-100%);
   width: 350px;
   background: $dark-alt;
-  height: 100vh;
   padding: 50px 0;
   padding-top: 0;
-  overflow-y: auto;
   opacity: 0;
+  height: 100vh;
+  box-shadow: 5px 0 20px 2px #022e68c0;
   transition: 0.5s all ease;
 
   &.active-library {
@@ -40,8 +40,16 @@
   }
 
   .songs {
-    margin-top: 100px;
+    margin-top: 80px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
     overflow-y: auto;
+
+    @media (max-width: 992px) {
+      width: 100%;
+    }
   }
 
   .library-song {

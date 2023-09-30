@@ -14,10 +14,28 @@ const Player = ({
   setSongs,
 }) => {
   //   useEffect
-  useEffect(() => {
-    // Active Selected Song
+  // useEffect(() => {
+  //   // Active Selected Song
+  //   const newSongs = songs.map((song) => {
+  //     if (song.id === currentSong.id) {
+  //       return {
+  //         ...song,
+  //         active: true,
+  //       };
+  //     } else {
+  //       return {
+  //         ...song,
+  //         active: false,
+  //       };
+  //     }
+  //   });
+  //   setSongs(newSongs);
+  // }, [currentSong]);
+
+  // Active Selected Song
+  const activeLibraryHandler = (nextPrev) => {
     const newSongs = songs.map((song) => {
-      if (song.id === currentSong.id) {
+      if (song.id === nextPrev.id) {
         return {
           ...song,
           active: true,
@@ -30,7 +48,8 @@ const Player = ({
       }
     });
     setSongs(newSongs);
-  }, [currentSong]);
+  };
+
   // Event
   const playSongHandler = () => {
     // console.log(audioRef.current);
@@ -67,16 +86,19 @@ const Player = ({
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     if (direction === "skip-forward") {
       await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+      activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
       // console.log(`next index is ${currentIndex + 1}`);
       // console.log(`songs length is ${songs.length}`);
     }
     if (direction === "skip-back") {
       if ((currentIndex - 1) % songs.length === -1) {
         await setCurrentSong(songs[songs.length - 1]);
+        activeLibraryHandler(songs[songs.length - 1]);
         if (isPlaying) audioRef.current.play();
         return;
       }
       await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+      activeLibraryHandler(songs[(currentIndex - 1) % songs.length]);
       // console.log(`next index is ${currentIndex + 1}`);
       // console.log(`songs length is ${songs.length}`);
     }
